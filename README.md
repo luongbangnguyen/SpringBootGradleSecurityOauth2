@@ -1,7 +1,7 @@
 # SpringBootGradleSecurityOauth2
 SpringBootGradleSecurityOauth2
 
-this project security oauth2 token store in databse, using gradle spring boot
+this project security oauth2 simple with token store in databse, using gradle spring boot
 
 @Configuration
 public class OAuth2Config {
