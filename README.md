@@ -3,8 +3,6 @@ SpringBootGradleSecurityOauth2
 
 this project security oauth2 simple with token store in databse, using gradle spring boot
 
-@Configuration
-public class OAuth2Config {
 
     private static final String RESOURCE_ID = "restservice";
 
