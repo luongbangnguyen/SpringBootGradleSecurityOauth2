@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet"
+          media="screen"/>
+    <link th:href="@{bootstrap/js/bootstrap.min.js}" rel="stylesheet"
+          media="screen"/>
+    <script th:src="@{js/jquery-2.1.4.min.js}"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Please Confirm</h2>
+
+    <h1 sec:authorize="isAuthenticated()">Authenticated</h1>
+
+    <form id="confirmationForm" name="confirmationForm"
+          th:action="@{/oauth/authorize}" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button class="btn btn-primary" type="submit">Approve</button>
+    </form>
+    <form id="denyForm" name="confirmationForm"
+          th:action="@{/oauth/authorize}" method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <button class="btn btn-primary" type="submit">Deny</button>
+    </form>
+</div>
+</body>
+</html>
