@@ -3,9 +3,16 @@ package com.asiatech.spring.service.impl;
 
 import com.asiatech.spring.enmum.Roles;
 import com.asiatech.spring.entity.Customer;
-import com.asiatech.spring.repository.CustomerRespository;
+import com.asiatech.spring.repository.CustomerRepository;
+import com.asiatech.spring.repository.CustomerSpecs;
 import com.asiatech.spring.service.CustomerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -18,14 +25,14 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    private CustomerRespository customerRespository;
+    private CustomerRepository customerRespository;
     
     @Autowired 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public Customer findByFirstName(String name) {
-        return customerRespository.findByFirstName(name);
+        return customerRespository.findByFistname(name);
     }
 
 
@@ -46,5 +53,15 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getListCustomer() {
         return customerRespository.findAll();
     }
+
+
+	@Override
+	public Page<Customer> getCustomers(String fistname, String lastname, Integer pagenumber) {
+		Pageable pageable = new PageRequest(pagenumber,10, Direction.DESC,"id");
+		Specification<Customer> spec = CustomerSpecs.isFistNameOrLastName(fistname, lastname);
+		Page<Customer> result = customerRespository.findAll(spec, pageable);
+		return result;
+	}
+	
 
 }

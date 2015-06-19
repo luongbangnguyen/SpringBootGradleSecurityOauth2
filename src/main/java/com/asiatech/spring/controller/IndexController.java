@@ -29,7 +29,7 @@ class IndexController {
     public String addUser(@ModelAttribute("customer") Customer cus,
                           RedirectAttributes redirectAttrs) {
         Customer cusSaved = cusSv.save(cus);
-        redirectAttrs.addAttribute("name", cusSaved.getFirstName());
+        redirectAttrs.addAttribute("name", cusSaved.getFistname());
         return "redirect:/account";
     }
 }

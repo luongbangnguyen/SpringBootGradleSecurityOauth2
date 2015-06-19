@@ -1,17 +1,19 @@
 package com.asiatech.spring.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.asiatech.spring.entity.Customer;
 
-public interface CustomerRespository extends JpaRepository<Customer, Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer>,
+JpaSpecificationExecutor<Customer> {
     /**
      * get customer by fist name
      *
      * @param name
      * @return
      */
-    Customer findByFirstName(String name);
+    Customer findByFistname(String name);
 
     /**
      * get customer by user name used in security

@@ -1,22 +1,27 @@
 package com.asiatech.spring.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.asiatech.spring.enmum.Roles;
 
 @Entity
+@Table
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String firstName;
-    private String lastName;
+    
+    private String fistname;
+    
+    private String lastname;
     private String userName;
     private String password;
 
@@ -26,18 +31,6 @@ public class Customer {
     protected Customer() {
     }
 
-    public Customer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
-                id, firstName, lastName);
-    }
-
     public long getId() {
         return id;
     }
@@ -45,24 +38,25 @@ public class Customer {
     public void setId(long id) {
         this.id = id;
     }
+    
+   
+    public String getFistname() {
+		return fistname;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setFistname(String fistname) {
+		this.fistname = fistname;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getLastname() {
+		return lastname;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
+	public String getUserName() {
         return userName;
     }
 

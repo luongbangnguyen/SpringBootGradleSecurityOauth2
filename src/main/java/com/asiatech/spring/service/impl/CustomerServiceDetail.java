@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 
 import com.asiatech.spring.enmum.Roles;
 import com.asiatech.spring.entity.Customer;
-import com.asiatech.spring.repository.CustomerRespository;
+import com.asiatech.spring.repository.CustomerRepository;
 
 @Service
 public class CustomerServiceDetail implements UserDetailsService {
 
     @Autowired
-    private CustomerRespository customerRespository;
+    private CustomerRepository customerRespository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +31,6 @@ public class CustomerServiceDetail implements UserDetailsService {
         Customer customer = customerRespository.findByUserName(username);
         Roles role = customer.getRole();
         User user = new User(customer.getUserName(), customer.getPassword(), getGrantedAuthorities(role));
-        System.out.println("---------------------password user: "+user.getPassword());
         return user;
     }
 

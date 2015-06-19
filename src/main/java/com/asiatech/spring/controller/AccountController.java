@@ -2,6 +2,7 @@ package com.asiatech.spring.controller;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,5 +37,12 @@ public class AccountController {
         Customer cusSaved = cusSv.save(cus);
         CustomerResource cusResource = beanMapper.map(cusSaved, CustomerResource.class);
         return cusResource;
+    }
+    
+    @RequestMapping(value = "/list")
+    public @ResponseBody Page<Customer> getAccounts(@RequestParam(value = "fistname", required = false) String fistname, 
+    		@RequestParam(value = "lastname", required = false) String lastname,
+    		@RequestParam(value="pageNumber", defaultValue = "0") Integer pageNumber){
+    	return cusSv.getCustomers(fistname, lastname, pageNumber);
     }
 }
