@@ -37,7 +37,7 @@ dependencies {
     compile('org.springframework.security:spring-security-jwt')
     compile("com.h2database:h2")
     compile('commons-codec:commons-codec:1.10')
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile("mysql:mysql-connector-java")
     compile("org.apache.commons:commons-lang3:3.0")
     compile("net.sf.dozer:dozer:5.5.1")
